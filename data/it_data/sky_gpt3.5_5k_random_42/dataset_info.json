@@ -1,0 +1,30 @@
+{
+  "train": {
+    "file_name": "train.json",
+    "formatting": "sharegpt"
+  },
+  "train_w_NN_2": {
+    "file_name": "train_w_NN_2.json",
+    "formatting": "sharegpt"
+  },
+  "train_w_diverseNN_2_128": {
+    "file_name": "train_w_diverseNN_2_128_GTElargeEmb_text.json",
+    "formatting": "sharegpt"
+  },
+  "train_w_diverseNN_bm25Rej_2_128_20": {
+    "file_name": "train_w_diverseNN_bm25Rej_2_128_20_GTElargeEmb_text.json",
+    "formatting": "sharegpt"
+  },
+  "train_w_NN_bm25Rej_2_20": {
+    "file_name": "train_w_NN_bm25Rej_2_20_GTElargeEmb_text.json",
+    "formatting": "sharegpt"
+  },
+  "train_w_mix_0.8_examp_2": {
+    "file_name": "train_w_mix_0.8_examp_2.json",
+    "formatting": "sharegpt"
+  },
+  "train_w_rand_examp_2": {
+    "file_name": "train_w_rand_examp_2.json",
+    "formatting": "sharegpt"
+  }
+}

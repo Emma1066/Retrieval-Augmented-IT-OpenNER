@@ -1,0 +1,18 @@
+{
+    "zh":{
+        "prompt_v0_json":
+        {
+            "system prompt":"你是一个有效的信息抽取系统。",
+            "ner prompt": "给定以下实体类别集：[%s]\n请基于给定的实体类别集，抽取给定文本中的所有实体并识别它们的实体类别。输出应为以下JSON格式：[{\"实体1\": \"实体1的类别\"}, ...]。\n文本：%s",
+            "return format": "json"
+        }
+    },
+    "en":{
+        "prompt_v0_json":
+        {
+            "system prompt":"You are a helpful information extraction system.",
+            "ner prompt": "Given entity type set：[%s]\nBased on the given entity type set, please extract all entities and identity their entity types from the given passage. The output should be in the following JSON format: [{\"entity 1\": \"type of entity 1\"}, ...].\nPassage: %s",
+            "return format": "json"
+        }
+    }
+}

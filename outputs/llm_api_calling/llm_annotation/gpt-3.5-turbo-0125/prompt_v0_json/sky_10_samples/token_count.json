@@ -1,0 +1,8 @@
+{
+    "prompt_tokens": 5913,
+    "completion_tokens": 3064,
+    "total_tokens": 8977,
+    "avg_prompt_tokens": 347.8235294117647,
+    "avg_completion_tokens": 180.23529411764707,
+    "avg_total_tokens": 528.0588235294117
+}

@@ -1,0 +1,24 @@
+{
+    "zh":{
+        "prompt_v0_json":
+        {
+            "system prompt":"你是一个有效的信息抽取系统。",
+            "ner prompt": "给定一段文本，你的任务是抽取所有实体并识别它们的实体类别。输出应为以下JSON格式：[{\"实体1\": \"实体1的类别\"}, ...]。\n文本：%s",
+            "return format": "json"
+        },
+        "prompt_v0_tuple_list":
+        {
+            "system prompt":"你是一个有效的信息抽取系统。",
+            "ner prompt": "给定一段文本，你的任务是抽取所有实体并识别它们的实体类别。输出应为以下格式的元组列表：[(\"实体1\", \"实体1的类别\"), ...]。\n文本：%s",
+            "return format": "tuple list"
+        }
+    },
+    "en":{
+        "prompt_v0_json":
+        {
+            "system prompt":"You are a helpful information extraction system.",
+            "ner prompt": "Given a passage, your task is to extract all entities and identify their entity types. The output should be in the following JSON format: [{\"entity 1\": \"type of entity 1\"}, ...].\nPassage: %s",
+            "return format": "json"
+        }
+    }
+}
