@@ -1,6 +1,6 @@
 # Data Processing
 ## Chinese OpenNER Data Construction
-We release [Sky-NER](https://todo), an instruction-tuning dataset constructed for Chinese openNER, based on the Sky corpus. We followed the recipe in [UniversalNER](https://arxiv.org/abs/2308.03279) to construct Sky-NER. You can also download the datasets of Sky-NER in [google drive](https://drive.google.com/file/d/1lJZd89KwfIaIQKfty7Ba1nvkhhUKqPjz/view?usp=sharing).
+We release [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER), an instruction-tuning dataset constructed for Chinese openNER, based on the Sky corpus. We followed the recipe in [UniversalNER](https://arxiv.org/abs/2308.03279) to construct Sky-NER. You can also download the datasets of Sky-NER in [google drive](https://drive.google.com/file/d/1lJZd89KwfIaIQKfty7Ba1nvkhhUKqPjz/view?usp=sharing).
 
 We also release the code of our data construction pipeline here.
 All the generated data files will be saved in [corpus_data](../../data/corpus_data/), and we have put a small number of example data in this folder for quick exploration. We also put the ChatGPT generated outputs of these examples in the folder [output](outputs/llm_api_calling/llm_annotation/gpt-3.5-turbo-0125/prompt_v0_json/sky_10_samples/entity_statistics.json) for reference.

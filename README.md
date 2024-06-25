@@ -3,7 +3,7 @@
 This is the github repository for the paper: *Retrieval Augmented Instruction Tuning for Open NER with Large Language Models*.
 
 - 📖 Paper: [Retrieval Augmented Instruction Tuning for Open NER with Large Language Models](https://todo)
-- 📙 Data: [Sky-NER](https://TODO), Our constructed instruction tuning data for Chinese open NER. 
+- 📙 Data: [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER), Our constructed instruction tuning data for Chinese open NER. 
 - 🔮 Models: [RA-IT-NER](https://TODO) and [RA-IT-NER-zh](https://TODO) , models trained with our retrieval augmented instruction tuning (RA-IT) approach.
 
 ## Introduction
@@ -35,7 +35,7 @@ numpy tqdm rich datasets Jinja jieba pandas pyarrow
 
 ## Data
 ### Chinese OpenNER Data Construction
-We release [Sky-NER](https://todo), an instruction-tuning dataset constructed for Chinese openNER, based on the Sky corpus. We followed the recipe in [UniversalNER](https://arxiv.org/abs/2308.03279) to construct Sky-NER.
+We release [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER), an instruction-tuning dataset constructed for Chinese openNER, based on the Sky corpus. We followed the recipe in [UniversalNER](https://arxiv.org/abs/2308.03279) to construct Sky-NER.
 
 We also release the code of our data construction pipeline in [data_process](src/data_process/).
 
@@ -49,7 +49,7 @@ The code for **generating RA-IT data** and **preprocessing the benchmarks** can 
 
 
 ## Models
-We release our models fine-tuned with the proposed RA-IT approach, [RA-IT-NER](todo) and [RA-IT-NER-zh](todo), which are trained on the English NER dataset [Pile-NER](todo) and the Chinese NER dataset [Sky-NER](todo) respectively.
+We release our models fine-tuned with the proposed RA-IT approach, [RA-IT-NER](todo) and [RA-IT-NER-zh](todo), which are trained on the English NER dataset [Pile-NER](todo) and the Chinese NER dataset [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER) respectively.
 
 | Model           | Language | Backbone    | Link |
 |-----------------|----------|-------------|------|
@@ -59,7 +59,7 @@ We release our models fine-tuned with the proposed RA-IT approach, [RA-IT-NER](t
 ## Demo
 The inferece code are based on [vllm](https://github.com/vllm-project/vllm).
 
-Please download our fine-tuned models [RA-IT-NER](todo) and [RA-IT-NER-zh](todo) and put them in the model folders before running the demos.
+Please download our fine-tuned models [RA-IT-NER](todo) and [RA-IT-NER-zh](todo) and put them in your model directory before running the demos.
 
 The following commands for running demos can be found in the bash scripts in [serve](src/serve).
 
@@ -69,8 +69,9 @@ Our model RA-IT-NER supports inference with and without RAG.
 
 Use the following command to launch a Gradio demo locally:
 ```Shell
+models=${your_model_dir}
 python src/serve/gradio_server.py \
-    --model_path models/RA-IT-NER \
+    --model_path ${models}/RA-IT-NER \
     --tensor_parallel_size 1 \
     --max_input_length 2048 \
     --language en
@@ -80,8 +81,9 @@ python src/serve/gradio_server.py \
 
 Use the following command to do inference with vllm:
 ```Shell
+models=${your_model_dir}
 python src/serve/cli.py \
-    --model_path models/RA-IT-NER \
+    --model_path ${models}/RA-IT-NER \
     --tensor_parallel_size 1 \
     --max_input_length 2048 \
     --language en
@@ -89,17 +91,19 @@ python src/serve/cli.py \
 
 Use the following command to do inference with HuggingFace Transformers:
 ```Shell
+models=${your_model_dir}
 python src/serve/hf.py \
-    --model_path models/RA-IT-NER \
+    --model_path ${models}/RA-IT-NER \
     --max_new_tokens 256 \
     --language en
 ```
 
 ## Finetuning
+All code and bash scripts of finetuning and evaluation can be found in folder [llm_tuning](src/llm_tuning/).
 
 We use [Llama-Factory](https://github.com/hiyouga/LLaMA-Factory) to fine-tune our models. 
 
-Generate the RA-IT datasets using code in [here](src/data_process), or download the processed RA-IT training data from [google drive](https://drive.google.com/file/d/1lJZd89KwfIaIQKfty7Ba1nvkhhUKqPjz/view?usp=sharing). Download the base model from huggingface.
+Please prepare the **data** and the **backbone** model before finetuning: Generate the RA-IT datasets using code in [here](src/data_process), or download the processed RA-IT training data from [google drive](https://drive.google.com/file/d/1lJZd89KwfIaIQKfty7Ba1nvkhhUKqPjz/view?usp=sharing). Download the base model from huggingface.
 
 Run the bash scripts for finetuning:
 ```bash
@@ -109,12 +113,13 @@ sh src/llm_tuning/bash_scripts/train_skyner_RA_IT.sh
 sh src/llm_tuning/bash_scripts/train_skyner_vanilla_IT.sh
 ```
 
-We provide the scripts of training with various retrieval strategies in [here](src/llm_tuning/bash_scripts):
+We also provide the scripts of training with various retrieval strategies in the folder [llm_tuning](src/llm_tuning/bash_scripts):
 
 
 ## Evaluation
+All code and bash scripts of finetuning and evaluation can be found in folder [llm_tuning](src/llm_tuning/).
 
-Download the processed benchmark data from [google drive](https://drive.google.com/file/d/1lJZd89KwfIaIQKfty7Ba1nvkhhUKqPjz/view?usp=sharing). Or process new benchmarks with the code in [data_process](src/data_process/).
+Please prepare the **benchmark data** before evaluation: Download the processed benchmark data from [google drive](https://drive.google.com/file/d/1lJZd89KwfIaIQKfty7Ba1nvkhhUKqPjz/view?usp=sharing). Or process new benchmarks with the code in [data_process](src/data_process/).
 
 Our evaluation code is adapted from [UniversalNER](https://github.com/universal-ner/universal-ner/tree/main). 
 
