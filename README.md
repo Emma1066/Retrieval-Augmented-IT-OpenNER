@@ -4,7 +4,7 @@ This is the github repository for the paper: *Retrieval Augmented Instruction Tu
 
 - 📖 Paper: [Retrieval Augmented Instruction Tuning for Open NER with Large Language Models](https://todo)
 - 📙 Data: [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER), Our constructed instruction tuning data for Chinese open NER. 
-- 🔮 Models: [RA-IT-NER](https://TODO) and [RA-IT-NER-zh](https://TODO) , models trained with our retrieval augmented instruction tuning (RA-IT) approach.
+- 🔮 Models: [RA-IT-NER-8B](https://huggingface.co/EmmaStrong/RA-IT-NER-8B) and [RA-IT-NER-zh-7B](https://huggingface.co/EmmaStrong/RA-IT-NER-zh-7B), models trained with the proposed retrieval augmented instruction tuning (RA-IT) approach.
 
 ## Introduction
 
@@ -35,31 +35,34 @@ numpy tqdm rich datasets Jinja jieba pandas pyarrow
 
 ## Data
 ### Chinese OpenNER Data Construction
-We release [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER), an instruction-tuning dataset constructed for Chinese openNER, based on the Sky corpus. We followed the recipe in [UniversalNER](https://arxiv.org/abs/2308.03279) to construct Sky-NER.
+We release [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER), an instruction-tuning dataset constructed for Chinese openNER, based on the [SkyPile corpus](https://huggingface.co/datasets/Skywork/SkyPile-150B). We followed the recipe in [UniversalNER](https://arxiv.org/abs/2308.03279) to construct Sky-NER.
 
 We also release the code of our data construction pipeline in [data_process](src/data_process/).
 
 
 ### Training and Evaluation Datasets
-We provide processed **benchmark datasets** used in our paper at the [Google Drive](https://drive.google.com/file/d/1lJZd89KwfIaIQKfty7Ba1nvkhhUKqPjz/view?usp=sharing). We also include our **training datasets** in this package, including the sampled 5K and 10K datasets used in our paper.
+We provide the processed training and evaluation data used in our paper at the [Google Drive](https://drive.google.com/file/d/1lJZd89KwfIaIQKfty7Ba1nvkhhUKqPjz/view?usp=sharing), which also includes the sampled 5K and 10K training datasets used in the paper. You can download and unzip the data pacakge and put the content in the [data](data) folder.
 
-You can download and unzip the data pacakge and put the content in the [data](data) folder.
+
+* Training Data: For English scenario, we use [Pile-NER](https://huggingface.co/datasets/Universal-NER/Pile-NER-type) as the training data. For Chinese scenario, we use our constructed [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER) as the training data.
+* Evaluation Data: We adopt seven benchmarks for English scenario and collect eight benchmarks for Chinese scenario. Detailed introduction of the used benchmarks can be found in the paper.
 
 The code for **generating RA-IT data** and **preprocessing the benchmarks** can all be found in [data_process](src/data_process/).
 
+#### Evaluation Data
 
 ## Models
-We release our models fine-tuned with the proposed RA-IT approach, [RA-IT-NER](todo) and [RA-IT-NER-zh](todo), which are trained on the English NER dataset [Pile-NER](todo) and the Chinese NER dataset [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER) respectively.
+We release our models fine-tuned with the proposed RA-IT approach, [RA-IT-NER-8B](https://huggingface.co/EmmaStrong/RA-IT-NER-8B) and [RA-IT-NER-zh-7B](https://huggingface.co/EmmaStrong/RA-IT-NER-zh-7B), which are trained on the English NER dataset [Pile-NER](https://huggingface.co/datasets/Universal-NER/Pile-NER-type) and the Chinese NER dataset [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER) respectively.
 
-| Model           | Language | Backbone    | Link |
+| Model           | Language | Backbone    | Training data |
 |-----------------|----------|-------------|------|
-| RA-IT-NER-8B    | English  | Llama-3-8B  | TODO |
-| RA-IT-NER-zh-7B | Chinese  | Qwen-1.5-7B | TODO |
+| [RA-IT-NER-8B](https://huggingface.co/EmmaStrong/RA-IT-NER-8B) | English  | Llama-3-8B  | [Pile-NER](https://huggingface.co/datasets/Universal-NER/Pile-NER-type) |
+| [RA-IT-NER-zh-7B](https://huggingface.co/EmmaStrong/RA-IT-NER-zh-7B) | Chinese  | Qwen-1.5-7B | [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER) |
 
 ## Demo
 The inferece code are based on [vllm](https://github.com/vllm-project/vllm).
 
-Please download our fine-tuned models [RA-IT-NER](todo) and [RA-IT-NER-zh](todo) and put them in your model directory before running the demos.
+Please download our fine-tuned models [RA-IT-NER-8B](https://huggingface.co/EmmaStrong/RA-IT-NER-8B) and [RA-IT-NER-zh-7B](https://huggingface.co/EmmaStrong/RA-IT-NER-zh-7B) and put them in your model directory before running the demos.
 
 The following commands for running demos can be found in the bash scripts in [serve](src/serve).
 
