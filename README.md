@@ -139,5 +139,13 @@ This repository is built based upon the excellent work of [UniversalNER](https:/
 
 ## Citation
 ```bibtex
-@misc{}
+@misc{xie2024retrievalaugmentedinstructiontuning,
+      title={Retrieval Augmented Instruction Tuning for Open NER with Large Language Models}, 
+      author={Tingyu Xie and Jian Zhang and Yan Zhang and Yuanyuan Liang and Qi Li and Hongwei Wang},
+      year={2024},
+      eprint={2406.17305},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+      url={https://arxiv.org/abs/2406.17305}, 
+}
 ```
