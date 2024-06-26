@@ -2,7 +2,7 @@
 
 This is the github repository for the paper: *Retrieval Augmented Instruction Tuning for Open NER with Large Language Models*.
 
-- 📖 Paper: [Retrieval Augmented Instruction Tuning for Open NER with Large Language Models](https://todo)
+- 📖 Paper: [Retrieval Augmented Instruction Tuning for Open NER with Large Language Models](https://arxiv.org/abs/2406.17305)
 - 📙 Data: [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER), Our constructed instruction tuning data for Chinese open NER. 
 - 🔮 Models: [RA-IT-NER-8B](https://huggingface.co/EmmaStrong/RA-IT-NER-8B) and [RA-IT-NER-zh-7B](https://huggingface.co/EmmaStrong/RA-IT-NER-zh-7B), models trained with the proposed retrieval augmented instruction tuning (RA-IT) approach.
 
@@ -49,7 +49,6 @@ We provide the processed training and evaluation data used in our paper at the [
 
 The code for **generating RA-IT data** and **preprocessing the benchmarks** can all be found in [data_process](src/data_process/).
 
-#### Evaluation Data
 
 ## Models
 We release our models fine-tuned with the proposed RA-IT approach, [RA-IT-NER-8B](https://huggingface.co/EmmaStrong/RA-IT-NER-8B) and [RA-IT-NER-zh-7B](https://huggingface.co/EmmaStrong/RA-IT-NER-zh-7B), which are trained on the English NER dataset [Pile-NER](https://huggingface.co/datasets/Universal-NER/Pile-NER-type) and the Chinese NER dataset [Sky-NER](https://huggingface.co/datasets/EmmaStrong/Sky-NER) respectively.
@@ -74,7 +73,7 @@ Use the following command to launch a Gradio demo locally:
 ```Shell
 models=${your_model_dir}
 python src/serve/gradio_server.py \
-    --model_path ${models}/RA-IT-NER \
+    --model_path ${models}/RA-IT-NER-8B \
     --tensor_parallel_size 1 \
     --max_input_length 2048 \
     --language en
@@ -86,7 +85,7 @@ Use the following command to do inference with vllm:
 ```Shell
 models=${your_model_dir}
 python src/serve/cli.py \
-    --model_path ${models}/RA-IT-NER \
+    --model_path ${models}/RA-IT-NER-8B \
     --tensor_parallel_size 1 \
     --max_input_length 2048 \
     --language en
@@ -96,7 +95,7 @@ Use the following command to do inference with HuggingFace Transformers:
 ```Shell
 models=${your_model_dir}
 python src/serve/hf.py \
-    --model_path ${models}/RA-IT-NER \
+    --model_path ${models}/RA-IT-NER-8B \
     --max_new_tokens 256 \
     --language en
 ```
@@ -136,5 +135,9 @@ sh src/llm_tuning/bash_scripts/eval_skyner_vanilla_IT.sh
 For inference with various retrieval strategies, see more commands in the script [eval_skyner_RA_IT.sh](src/llm_tuning/bash_scripts/eval_skyner_RA_IT.sh). Uncomment the commands of the retrieval strategies you'd like to evaluate and then run the script.
 
 ## Acknowledgement
-This repository is built based upon the excellent work of [UniversalNER](https://github.com/universal-ner/universal-ner/tree/main) and [Llama-Factory](https://github.com/hiyouga/LLaMA-Factory). Also, the data preprocessing also partially referenced [MINI_LLM](https://github.com/jiahe7ay/MINI_LLM). We thank them for their open-source contributions.
+This repository is built based upon the excellent work of [UniversalNER](https://github.com/universal-ner/universal-ner/tree/main) and [Llama-Factory](https://github.com/hiyouga/LLaMA-Factory). The corpus data preprocessing partially referenced [MINI_LLM](https://github.com/jiahe7ay/MINI_LLM). We thank them for their open-sourced contributions.
 
+## Citation
+```bibtex
+@misc{}
+```
